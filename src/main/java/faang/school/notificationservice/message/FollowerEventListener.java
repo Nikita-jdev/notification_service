@@ -7,9 +7,7 @@ import faang.school.notificationservice.dto.UserDto;
 import faang.school.notificationservice.service.TelegramService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Component;
@@ -30,9 +28,9 @@ public class FollowerEventListener implements MessageListener {
         FollowerEvent event;
         try {
             event = objectMapper.readValue(message.getBody(), FollowerEvent.class);
-            log.info("из json делаем event, {}", message);
+            log.info("Do json from event, {}", message);
         } catch (IOException e) {
-            log.error("не получилось из json делаем event, {}", message);
+            log.error("Not possible to make an event from json, {}", message);
             throw new RuntimeException(e);
         }
         UserDto user = userServiceClient.getUser(event.getFolloweeId());
@@ -41,7 +39,8 @@ public class FollowerEventListener implements MessageListener {
         try {
             telegramService.send(user, text);
         } catch (Exception e) {
-            log.error("ошибка отправки сообщения {}", text );
-            throw new IllegalStateException(e);        }
+            log.error("Error sending message {}", text);
+            throw new IllegalStateException(e);
+        }
     }
 }
