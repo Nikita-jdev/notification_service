@@ -1,6 +1,6 @@
 package faang.school.notificationservice.service;
 
-import faang.school.notificationservice.config.telegram.TelegramBot;
+import faang.school.notificationservice.config.telegram.TelegramBotConfig;
 import faang.school.notificationservice.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class TelegramService {
-    private final TelegramBot telegramBot;
+    private final TelegramBotConfig telegramBotConfig;
 
     public void send(UserDto user, String messageText) {
-        telegramBot.send(user, messageText);
+        telegramBotConfig.send(user, messageText);
     }
 }

@@ -17,7 +17,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class FollowerEventListener implements MessageListener {
+public class TelegramFollowerEventListener implements MessageListener {
     private final ObjectMapper objectMapper;
     private final UserServiceClient userServiceClient;
     private final TelegramService telegramService;

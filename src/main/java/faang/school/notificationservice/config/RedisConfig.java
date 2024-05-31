@@ -1,6 +1,6 @@
 package faang.school.notificationservice.config;
 
-import faang.school.notificationservice.message.FollowerEventListener;
+import faang.school.notificationservice.message.TelegramFollowerEventListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,8 +38,8 @@ public class RedisConfig {
     }
 
     @Bean
-    MessageListenerAdapter messageListener(FollowerEventListener followerEventListener) {
-        return new MessageListenerAdapter(followerEventListener);
+    MessageListenerAdapter messageListener(TelegramFollowerEventListener telegramFollowerEventListener) {
+        return new MessageListenerAdapter(telegramFollowerEventListener);
     }
 
     @Bean
